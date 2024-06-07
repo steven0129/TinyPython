@@ -8,6 +8,9 @@
 
 using namespace std;
 
+const char* info = "*********** Python Research ***********";
+const char* prompt = ">> ";
+string m_Command;
 PyObject* m_LocalEnvironment;
 
 void ExecuteCommand(const string&);
@@ -18,8 +21,20 @@ bool isSourceAllDigit(const string& source);
 
 
 int main() {
-    
-    cout << "Hello World" << endl;
+    cout << info << endl;
+    cout << prompt;
+    while(getline(cin, m_Command)) {
+        if(m_Command.size() == 0) {
+            cout << prompt;
+            continue;
+        } else if(m_Command == "exit") {
+            return 0;
+        } else {
+            ExecuteCommand(m_Command);
+        }
+
+        cout << prompt;
+    }
     return 0;
 }
 
